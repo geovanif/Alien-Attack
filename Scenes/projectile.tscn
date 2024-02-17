@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ly0t5kvdhqgj"]
+[gd_scene load_steps=5 format=3 uid="uid://ly0t5kvdhqgj"]
 
 [ext_resource type="Texture2D" uid="uid://chv3xwtok2um" path="res://Assets/textures/rocket.png" id="1_qgkbq"]
 [ext_resource type="Script" path="res://Scripts/projectile.gd" id="1_vqn1v"]
+[ext_resource type="AudioStream" uid="uid://m6m40graec35" path="res://Assets/audio/sfx_laser2.wav" id="3_w0ja7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b8psk"]
 radius = 13.9215
@@ -18,3 +19,10 @@ texture = ExtResource("1_qgkbq")
 rotation = 1.5708
 scale = Vector2(1.79578, 4.36731)
 shape = SubResource("CapsuleShape2D_b8psk")
+
+[node name="LaserSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_w0ja7")
+
+[node name="visible_notifier" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="visible_notifier" to="." method="_on_visible_notifier_screen_exited"]

@@ -6,6 +6,7 @@
 [node name="Game" type="Node2D"]
 
 [node name="Background" type="TextureRect" parent="."]
+z_index = -100
 offset_right = 1326.0
 offset_bottom = 754.0
 texture = ExtResource("1_wefi2")
@@ -13,4 +14,4 @@ stretch_mode = 1
 
 [node name="Player" parent="." instance=ExtResource("2_xjvvi")]
 position = Vector2(34, 376)
-rotation = 1.57791
+rotation = 1.5708

@@ -8,6 +8,7 @@ radius = 0.454879
 height = 1.83505
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_veusp")
 
@@ -22,7 +23,7 @@ scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_3wxeq")
 
 [node name="shoot_coldown" type="Timer" parent="."]
-wait_time = 0.3
+wait_time = 0.2
 one_shot = true
 
 [node name="projectile_box" type="Node" parent="."]

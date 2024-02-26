@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://d2ktutbf035t"]
+[gd_scene load_steps=5 format=3 uid="uid://d2ktutbf035t"]
 
 [ext_resource type="Texture2D" uid="uid://db7ml35toqsfw" path="res://Assets/textures/enemy_ship.png" id="1_3p3it"]
 [ext_resource type="Script" path="res://Scripts/enemy_normal.gd" id="1_b48xf"]
+[ext_resource type="AudioStream" uid="uid://btkoenutq0qao" path="res://Assets/audio/hit.wav" id="4_yh8xl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0hmtk"]
 radius = 8.14614
@@ -23,4 +24,8 @@ shape = SubResource("CapsuleShape2D_0hmtk")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
+[node name="audio_hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_yh8xl")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

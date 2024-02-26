@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://n1807opow88x"]
+[gd_scene load_steps=6 format=3 uid="uid://n1807opow88x"]
 
 [ext_resource type="Texture2D" uid="uid://llp5r88o3xu4" path="res://Assets/textures/bg.png" id="1_wefi2"]
+[ext_resource type="Script" path="res://Scripts/game.gd" id="1_wgcf0"]
 [ext_resource type="PackedScene" uid="uid://o4b0pbbpn46r" path="res://Scenes/player.tscn" id="2_xjvvi"]
 [ext_resource type="PackedScene" uid="uid://bre5k500anqmf" path="res://Scenes/normal_enemy_spawn.tscn" id="3_koose"]
+[ext_resource type="AudioStream" uid="uid://bs3ci220lj7ak" path="res://Assets/audio/explode.wav" id="5_j4oip"]
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_wgcf0")
 
 [node name="Background" type="TextureRect" parent="."]
 z_index = -100
@@ -19,3 +22,24 @@ rotation = 1.5708
 
 [node name="normal_enemy_spawn" parent="." instance=ExtResource("3_koose")]
 position = Vector2(1294, 0)
+
+[node name="life_label" type="Label" parent="."]
+offset_left = 47.0
+offset_top = 17.0
+offset_right = 331.0
+offset_bottom = 99.0
+text = "5"
+
+[node name="score" type="Label" parent="."]
+offset_left = 1079.0
+offset_top = 12.0
+offset_right = 1203.0
+offset_bottom = 57.0
+
+[node name="explosion" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_j4oip")
+
+[connection signal="player_is_dead" from="Player" to="." method="_on_player_player_is_dead"]
+[connection signal="player_spawn" from="Player" to="." method="_on_player_player_spawn"]
+[connection signal="player_took_hit" from="Player" to="." method="_on_player_player_took_hit"]
+[connection signal="enemy_spawned" from="normal_enemy_spawn" to="." method="_on_normal_enemy_spawn_enemy_spawned"]

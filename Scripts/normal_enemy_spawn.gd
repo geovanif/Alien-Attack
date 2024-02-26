@@ -1,5 +1,7 @@
 extends Node2D
 
+signal enemy_spawned(enemy)
+
 var enemy_scene = preload("res://Scenes/enemy_normal.tscn")
 
 # Called when the node enters the scene tree for the first time.
@@ -14,7 +16,6 @@ func _ready():
 
 
 func spawn_enemy():
-	print('spanwed')
 	var enemy = enemy_scene.instantiate()
 	
 	var game = get_parent()
@@ -23,7 +24,8 @@ func spawn_enemy():
 	var spawn_x = screen_size.x +50  #randf_range(0, screen_size.y)  # Random Y coordinate
 
 	enemy.global_position = Vector2(spawn_x, spawn_y)
-	game.add_child(enemy)
+	emit_signal("enemy_spawned", enemy)
+#	game.add_child(enemy)
 
 
 func _on_timer_timeout():

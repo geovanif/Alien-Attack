@@ -1,9 +1,17 @@
 extends CharacterBody2D
 
+signal player_took_hit
+signal player_spawn
+signal player_is_dead
 
 const SPEED = 500.0
 var projectile_scene = preload("res://Scenes/projectile.tscn")
 @onready var timer = $shoot_coldown
+@onready var life = 3
+
+func _ready():
+	emit_signal("player_spawn", life)
+	
 
 func _physics_process(delta):
 	velocity = Vector2(0,0)
@@ -32,3 +40,12 @@ func shoot():
 		projectile.global_position = shoot_position
 		$projectile_box.add_child(projectile)
 		
+func hit():
+	life -= 1
+	emit_signal("player_took_hit", life)
+	if life == 0:
+		player_dead()
+		emit_signal("player_is_dead")
+		
+func player_dead():
+	pass
